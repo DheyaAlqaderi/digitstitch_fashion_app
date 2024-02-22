@@ -1,3 +1,4 @@
+import 'package:digitstitch_app/features/digitstitch/presentation/pages/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.lightTheme,
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.system,
-      home: Scaffold(),
+      home: const SplashScreen(),
     );
   }
 }
