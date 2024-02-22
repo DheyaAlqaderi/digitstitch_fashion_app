@@ -12,17 +12,41 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+  #state management
+  flutter_bloc: ^8.1.4
+
+  #comparing dart objects
+  equatable: ^2.0.5
+
+  #service locator
+  get_it: ^7.6.7
+
+  #dateFormat
+  intl: ^0.19.0
+
+  #Database
+  floor: ^1.4.2
+
+  #make request to api
+  retrofit: ^4.1.0
+
+  #Hooks
+  flutter_hooks: ^0.18.3
+
+  #chached image
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
+  retrofit_generator: ^8.1.0
+  floor_generator: ^1.4.2
+  build_runner: ^2.4.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,10 +69,6 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
   #   - family: Schyler

@@ -1,0 +1,1 @@
+const String DigitstitchApiBaseUrl = 'https://fakestoreapi.com';

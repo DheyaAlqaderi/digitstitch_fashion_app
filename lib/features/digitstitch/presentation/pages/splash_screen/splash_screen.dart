@@ -15,6 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
             child: Container(
+              margin: const EdgeInsets.only(bottom: 50.0),
               height: 266.0,
               child: Image.asset('assets/images/logo.png', fit: BoxFit.cover,),
             ),
