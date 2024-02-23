@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
 import '../../../../../core/constants/constants.dart';
@@ -9,6 +11,6 @@ abstract class DigitstitchApiService {
   factory DigitstitchApiService(Dio dio) = _DigitstitchApiService;
 
   @GET('/products')
-  Future<Response<List<CategoryModel>>> getCategories();
+  Future<List<CategoryModel>> getCategories();
 
 }

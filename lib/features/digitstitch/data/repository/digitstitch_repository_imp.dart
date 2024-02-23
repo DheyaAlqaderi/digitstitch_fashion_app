@@ -11,16 +11,16 @@ class DigitstitchRepositoryImp implements DigitstitchRepository {
 
   @override
   Future<DataState<List<CategoryModel>>> getCategories() async {
-    try{
+    try {
       final httpResponse = await _digitstitchApiService.getCategories();
 
-      if(httpResponse.statusCode == HttpStatus.ok){
-        return DataSuccess(httpResponse.data!);
-      } else{
+      if (httpResponse == HttpStatus.ok) {
+        return DataSuccess(httpResponse);
+      } else {
         return DataFailed(
             DioError(
-                error: httpResponse.statusMessage,
-                requestOptions: httpResponse.requestOptions,
+                error: httpResponse,
+                requestOptions: RequestOptions(),
                 type: DioErrorType.badResponse
             )
         );
@@ -28,7 +28,6 @@ class DigitstitchRepositoryImp implements DigitstitchRepository {
     } on DioError catch(e){
       return DataFailed(e);
     }
-
   }
 
 }

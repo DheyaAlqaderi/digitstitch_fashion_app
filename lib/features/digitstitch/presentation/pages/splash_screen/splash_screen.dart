@@ -1,3 +1,4 @@
+import 'package:digitstitch_app/features/digitstitch/presentation/pages/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 333.0, // Set your custom width
               height: 56.0, // Set your custom height
               child: ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  // Function to be executed when the button is pressed
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom( // Text color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0), // Corner radius
