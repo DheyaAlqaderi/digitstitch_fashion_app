@@ -1,1 +1,1 @@
-const String DigitstitchApiBaseUrl = 'https://fakestoreapi.com';
+const String DigitstitchApiBaseUrl = 'http://192.168.0.177/api/v1/';

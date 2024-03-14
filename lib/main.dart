@@ -1,18 +1,30 @@
-import 'package:digitstitch_app/features/digitstitch/data/repository/digitstitch_repository_imp.dart';
-import 'package:digitstitch_app/features/digitstitch/domain/usecases/get_category.dart';
-import 'package:digitstitch_app/features/digitstitch/presentation/bloc/category/remote/remote_category_bloc.dart';
-import 'package:digitstitch_app/features/digitstitch/presentation/bloc/category/remote/remote_category_event.dart';
-import 'package:digitstitch_app/features/digitstitch/presentation/pages/splash_screen/splash_screen.dart';
-import 'package:digitstitch_app/injection_container.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/data/data_source/home_page_api_service.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/data/repository/home_page_repository_impl.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/domain/usecase/get_banners/get_banners_usecase.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/presentation/cubit/banners/banners_cubit.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/presentation/pages/home/home_page.dart';
+import 'package:digitstitch_app/features/digitstitch/auth/data/data_source/auth_service_api.dart';
+import 'package:digitstitch_app/features/digitstitch/auth/data/repository/auth_repository_impl.dart';
+import 'package:digitstitch_app/features/digitstitch/auth/domain/usecase/login_usecase/login_usecase.dart';
+import 'package:digitstitch_app/features/digitstitch/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:digitstitch_app/features/digitstitch/root/presentation/pages/root.dart';
+import 'package:digitstitch_app/features/digitstitch/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'config/theme/theme.dart';
+import 'package:dio/dio.dart';
+
+import 'core/helper/shareprefrence_manager.dart';
+
 
 Future<void> main() async {
-  // initialize dependencies
-  await initializeDependencies();
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize SharedPreferences
+  await SharedPrefManager.init();
+
 
   // this to make battery, notification icons fixable changes colors above the appbar.
   SystemChrome.setSystemUIOverlayStyle(
@@ -22,7 +34,7 @@ Future<void> main() async {
       statusBarIconBrightness: Brightness.dark,
     ),);
 
-  runApp(const MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,16 +42,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteCategoryBloc>(
-      create: (context)
-      => BlocProvider.of<RemoteCategoryBloc>(context)..add(GetCategories()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (_) => LoginCubit(LoginUseCase(AuthRepositoryImpl(AuthServiceApi(Dio())))),
+        ),
+        BlocProvider<BannerCubit>(
+          create: (_) => BannerCubit(GetBannersUseCase(HomePageRepositoryImpl(HomePageApi(Dio())))),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'DigitStitch',
         theme: ThemeClass.lightTheme,
         darkTheme: ThemeClass.darkTheme,
         themeMode: ThemeMode.system,
-        home: const SplashScreen(),
+        home: SplashPage(),
       ),
     );
   }
