@@ -21,7 +21,7 @@ class _RootPageState extends State<RootPage> {
     const HomePage(),
     const CartPage(),
     const WishlistPage(),
-    const ProfilePage(),
+    const WishlistPage(),
   ];
 
   List<String> titleList = [

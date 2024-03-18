@@ -37,7 +37,7 @@ class _BannerSectionWidgetState extends State<BannerSectionWidget> {
               carouselController: controller,
               itemCount: widget.images.length,
               itemBuilder: (context, index, realIndex) {
-                return PromotionWidget(widget.images[index], widget.title[index], widget.description[index]);
+                return PromotionWidget(widget.images[index].toString(), widget.title[index], widget.description[index]);
               },
               options: CarouselOptions(
                   autoPlay: true,
@@ -48,7 +48,7 @@ class _BannerSectionWidgetState extends State<BannerSectionWidget> {
                       setState(() => activeIndex = index)
               )
           ),
-          const SizedBox(height: 2),
+          const SizedBox(height: 5),
           buildIndicator()
         ],
       ),
@@ -62,49 +62,19 @@ class _BannerSectionWidgetState extends State<BannerSectionWidget> {
     return Container(
       width: 310.0,
       height: 180,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      decoration:  BoxDecoration(
+        borderRadius: const BorderRadius.only(
           bottomRight: Radius.circular(25),
           topLeft: Radius.circular(25),
           topRight: Radius.circular(25),
         ),
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(image),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: CachedNetworkImage(
-                imageUrl: image,
-                placeholder: (BuildContext context, String url) => Container(
-                  width: 320,
-                  height: 240,
-                  color: Colors.grey[200], // Placeholder color
-                  child: const Center(
-                    child: CircularProgressIndicator(), // Placeholder loading indicator
-                  ),
-                ),
-                errorWidget: (BuildContext context, String url, dynamic error) => Container(
-                  width: 320,
-                  height: 240,
-                  color: Colors.grey[200], // Error placeholder color
-                  child: const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      color: Colors.red, // Error icon color
-                      size: 48.0, // Error icon size
-                    ),
-                  ),
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-
-
 
           Positioned(
             top: 10,
