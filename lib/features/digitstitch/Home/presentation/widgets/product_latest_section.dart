@@ -6,7 +6,7 @@ import '../../data/models/product/latest_product_model.dart';
 import 'latest_product_widget.dart';
 
 class LatestProductSection extends StatelessWidget {
-  const LatestProductSection({Key? key, required this.productModel}) : super(key: key);
+  const LatestProductSection({super.key, required this.productModel});
 
   final LatestProductModel productModel;
 
@@ -75,7 +75,7 @@ class LatestProductSection extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
         ],
       ),
     );

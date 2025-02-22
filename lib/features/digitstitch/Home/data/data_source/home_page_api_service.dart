@@ -1,12 +1,13 @@
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/banner/banner_response_model.dart';
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/category/category_model.dart';
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/flash_sale/flash_sale_model.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/data/models/product/product_details.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
+import '../../../../../core/common_models/api_response_model.dart';
 import '../../../../../core/constants/constants.dart';
 import '../models/product/latest_product_model.dart';
-import '../models/product/product_filter_type_enum.dart';
 import '../models/product/product_model.dart';
 part 'home_page_api_service.g.dart';
 
@@ -34,7 +35,10 @@ abstract class HomePageApi{
       @Query("limit") int limit,
       @Query("offset") int offset,
       );
-
-
+  
+  @GET('products/details/{productId}')
+  Future<ProductDetailsModel> getProductDetails(
+      @Path("productId") int productId
+      );
 
 }

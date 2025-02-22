@@ -2,6 +2,7 @@
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/banner/banner_response_model.dart';
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/category/category_model.dart';
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/flash_sale/flash_sale_model.dart';
+import 'package:digitstitch_app/features/digitstitch/Home/data/models/product/product_details.dart';
 import 'package:digitstitch_app/features/digitstitch/Home/data/models/product/product_model.dart';
 
 import '../../data/models/product/latest_product_model.dart';
@@ -22,5 +23,8 @@ abstract class HomePageRepository{
 
   // search by text
   Future<ProductModel> getSearchQuery({String query, int limit, int offset});
+
+  // get product details
+  Future<ProductDetailsModel> getProductDetails(int productId);
 
 }

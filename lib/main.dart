@@ -27,6 +27,9 @@ import 'package:dio/dio.dart';
 import 'core/helper/shareprefrence_manager.dart';
 import 'features/digitstitch/Home/presentation/pages/search/card_product_search.dart';
 import 'features/digitstitch/Home/presentation/pages/search/search_page.dart';
+import 'features/digitstitch/product_and_reviews/domain/usecase/get_product_details/get_product_details_usecase.dart';
+import 'features/digitstitch/product_and_reviews/presentation/cubit/product_details/product_details_cubit.dart';
+import 'features/digitstitch/product_and_reviews/presentation/pages/product_details/product_details_page.dart';
 import 'features/digitstitch/profile/presentation/pages/profile_page.dart';
 
 
@@ -74,6 +77,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<SearchQueryCubit>(
           create: (_) => SearchQueryCubit(GetSearchQueryUseCase(HomePageRepositoryImpl(HomePageApi(Dio())))),
         ),
+        BlocProvider<ProductDetailsCubit>(
+          create: (_) => ProductDetailsCubit(GetProductDetailsUseCase(HomePageRepositoryImpl(HomePageApi(Dio())))),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -81,7 +87,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeClass.lightTheme,
         darkTheme: ThemeClass.darkTheme,
         themeMode: ThemeMode.system,
-        home: SearchPage(),
+        home: ProductDetailsPage(),
       ),
     );
   }

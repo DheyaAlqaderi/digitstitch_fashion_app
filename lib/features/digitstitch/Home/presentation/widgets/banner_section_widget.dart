@@ -1,11 +1,10 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
 class BannerSectionWidget extends StatefulWidget {
   BannerSectionWidget({super.key, required this.images, required this.title, required this.description});
-
   List<String> images;
   List<String> title;
   List<String> description;
@@ -37,7 +36,7 @@ class _BannerSectionWidgetState extends State<BannerSectionWidget> {
               carouselController: controller,
               itemCount: widget.images.length,
               itemBuilder: (context, index, realIndex) {
-                return PromotionWidget(widget.images[index].toString(), widget.title[index], widget.description[index]);
+                return promotionWidget(widget.images[index].toString(), widget.title[index], widget.description[index]);
               },
               options: CarouselOptions(
                   autoPlay: true,
@@ -58,7 +57,7 @@ class _BannerSectionWidgetState extends State<BannerSectionWidget> {
 
 
 
-  PromotionWidget(String image, String title, String description) {
+  promotionWidget(String image, String title, String description) {
     return Container(
       width: 310.0,
       height: 180,
