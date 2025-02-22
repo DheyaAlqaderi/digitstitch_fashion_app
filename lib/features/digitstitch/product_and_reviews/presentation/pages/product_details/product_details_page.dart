@@ -174,7 +174,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       children: [
                         // image section
                         ImageSectionWidget(images: images),
-
+//
                         // name and price and counter section
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
